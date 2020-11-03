@@ -39,6 +39,36 @@ void Point::reset() {
     y = 0;
 }
 
+class Point3D : public Point {
+protected:
+    int z;
+public:
+    Point3D(): Point() {
+        printf("Point3D()\n");
+        z = 0;
+    }
+
+    Point3D(int x_, int y_, int z_): Point(x_, y_) {
+        printf("Point3D(int x_, int y_, int z_)\n");
+        z = z_;
+    }
+
+    Point3D(const Point3D& a) {
+        printf("Point3D(const Point3D& a)\n");
+        x = a.x;
+        y = a.y;
+        z = a.z;
+    }
+
+    ~Point3D() {
+        printf("~Point3D(%d, %d, %d)\n", x, y, z);
+    }
+
+    void move_z(int dz) {
+        z += dz;
+    }
+};
+
 int main()
 {
     {
@@ -64,6 +94,14 @@ int main()
         printf("\n");
         Point* p_ = new Point(1, 2);
         p_->reset();
+        delete p_;
+    }
+    printf("\n\n");
+    {
+        Point3D* p = new Point3D(11, 22, 30);
+        delete p;
+        printf("\n");
+        Point* p_ = new Point3D(1, 2, 3);
         delete p_;
     }
 }
