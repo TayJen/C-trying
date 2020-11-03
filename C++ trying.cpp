@@ -69,6 +69,42 @@ public:
     }
 };
 
+class Section {
+protected:
+    Point* p1;
+    Point* p2;
+public:
+    Section() {
+        printf("Section()\n");
+        p1 = new Point();
+        p2 = new Point();
+    }
+
+    Section(int x, int y, int x_, int y_) {
+        printf("Section(int x, int y, int x_, int y_)\n");
+        p1 = new Point(x, y);
+        p2 = new Point(x_, y_);
+    }
+
+    Section(const Section& a) {
+        printf("Section(const Section& a)\n");
+        p1 = new Point(*a.p1);
+        p2 = new Point(*a.p2);
+    }
+
+    ~Section() {
+        delete p1;
+        delete p2;
+        printf("~Section()\n");
+    }
+};
+
+class Section3D : Section {
+protected:
+    Point3D* p;
+    Point3D* p1;
+};
+
 int main()
 {
     {
@@ -103,5 +139,19 @@ int main()
         printf("\n");
         Point* p_ = new Point3D(1, 2, 3);
         delete p_;
+    }
+    printf("\n\n");
+    {
+        Section* s = new Section();
+        printf("\n");
+        Section* s_ = new Section(*s);
+        printf("\n");
+        Section* s1 = new Section(13, 24, 11, 15);
+        printf("\n");
+        delete s;
+        printf("\n");
+        delete s_;
+        printf("\n");
+        delete s1;
     }
 }
