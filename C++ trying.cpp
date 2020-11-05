@@ -53,10 +53,8 @@ public:
         z = z_;
     }
 
-    Point3D(const Point3D& a) {
+    Point3D(const Point3D& a): Point(a) {
         printf("Point3D(const Point3D& a)\n");
-        x = a.x;
-        y = a.y;
         z = a.z;
     }
 
@@ -64,8 +62,37 @@ public:
         printf("~Point3D(%d, %d, %d)\n", x, y, z);
     }
 
-    void move_z(int dz) {
+    void move(int dx, int dy, int dz) {
+        Point::move(dx, dy);
         z += dz;
+    }
+};
+
+class ColoredPoint3D : Point3D {
+protected:
+    int color;
+public:
+    ColoredPoint3D() : Point3D() {
+        printf("ColoredPoint3D()\n");
+        color = 0;
+    }
+
+    ColoredPoint3D(int x_, int y_, int z_, int color_) : Point3D(x_, y_, z_) {
+        printf("ColoredPoint3D(int x_, int y_, int z_, int color_)\n");
+        color = color_;
+    }
+
+    ColoredPoint3D(const ColoredPoint3D& a) : Point3D(a) {
+        printf("ColoredPoint3D(const ColoredPoint3D& a)\n");
+        color = a.color;
+    }
+
+    ~ColoredPoint3D() {
+        printf("~ColoredPoint3D(%d, %d, %d, %d)\n", x, y, z, color);
+    }
+
+    void change_color(int color_) {
+        color = color_;
     }
 };
 
@@ -99,20 +126,15 @@ public:
     }
 };
 
-class Section3D : Section {
-protected:
-    Point3D* p;
-    Point3D* p1;
-};
-
 int main()
 {
+    printf("1.\n");
     {
         Point a;
         Point b(1, 2);
         Point c(b);
     }
-    printf("\n\n");
+    printf("\n\n2.\n");
     {
         Point* p1 = new Point();
         Point* p2 = new Point(3, 4);
@@ -122,7 +144,7 @@ int main()
         delete p2;
         delete p3;
     }
-    printf("\n\n");
+    printf("\n\n3.\n");
     {
         Point* p = new Point(5, 7);
         p->move(10, 10);
@@ -132,7 +154,7 @@ int main()
         p_->reset();
         delete p_;
     }
-    printf("\n\n");
+    printf("\n\n4.\n");
     {
         Point3D* p = new Point3D(11, 22, 30);
         delete p;
@@ -140,7 +162,7 @@ int main()
         Point* p_ = new Point3D(1, 2, 3);
         delete p_;
     }
-    printf("\n\n");
+    printf("\n\n5.\n");
     {
         Section* s = new Section();
         printf("\n");
@@ -153,5 +175,15 @@ int main()
         delete s_;
         printf("\n");
         delete s1;
+    }
+    printf("\n\n6.\n");
+    {
+        ColoredPoint3D* p1 = new ColoredPoint3D();
+        printf("\n");
+        ColoredPoint3D* p2 = new ColoredPoint3D(11, 20, 33, 45);
+        printf("\n");
+        delete p2;
+        printf("\n");
+        delete p1;
     }
 }
