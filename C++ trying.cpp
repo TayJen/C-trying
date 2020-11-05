@@ -57,6 +57,10 @@ int main()
         printf("\n");
         ColoredPoint3D* p2 = new ColoredPoint3D(11, 20, 33, 45);
         printf("\n");
+        ColoredPoint3D* p3 = new ColoredPoint3D(*p2);
+        printf("\n");
+        delete p3;
+        printf("\n");
         delete p2;
         printf("\n");
         delete p1;
