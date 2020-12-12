@@ -7,7 +7,12 @@ Piece_of_paper::Piece_of_paper() {
 	size = 0;
 	material = 0;
 }
-Piece_of_paper::Piece_of_paper(int size_, char material_ = 'w') {
+Piece_of_paper::Piece_of_paper(int size_) {
+	printf("Piece_of_paper(int size_)\n");
+	size = size_;
+	material = 'w';
+}
+Piece_of_paper::Piece_of_paper(int size_, char material_) {
 	printf("Piece_of_paper(int size_, char material_)\n");
 	size = size_;
 	material = material_;
@@ -35,10 +40,24 @@ Book::Book() : Piece_of_paper() {
 	page_count = 0;
 	genre = 0;
 }
-Book::Book(int page_count_, int genre_, int size_ = 4, char material_ = 'w')
+Book::Book(int page_count_)
+	: Piece_of_paper(4, 'w')
+{
+	printf("Book(int page_count_)");
+	page_count = page_count_;
+	genre = 0;
+}
+Book::Book(int page_count_, int genre_)
+	: Piece_of_paper(4, 'w')
+{
+	printf("Book(int page_count_, int genre_)");
+	page_count = page_count_;
+	genre = genre_;
+}
+Book::Book(int page_count_, int genre_, int size_, char material_)
 	: Piece_of_paper(size_, material_)
 {
-	printf("Book(int page_count_, int genre_, int size_ = 4, char material_ = 'w')");
+	printf("Book(int page_count_, int genre_, int size_, char material_)");
 	page_count = page_count_;
 	genre = genre_;
 }
@@ -63,9 +82,14 @@ Album::Album() : Piece_of_paper() {
 	printf("Album()");
 	number_of_paintings = 0;
 }
-Album::Album(int number_of_paintings_, int size_ = 3, char material_ = 'w')
+Album::Album(int number_of_paintings_)
+	: Piece_of_paper(3, 'w') {
+	printf("Album(int number_of_paintings_)");
+	number_of_paintings = number_of_paintings_;
+}
+Album::Album(int number_of_paintings_, int size_, char material_)
 	: Piece_of_paper(size_, material_) {
-	printf("Album(int number_of_paintings_, int size_ = 3, char material_ = 'w')");
+	printf("Album(int number_of_paintings_, int size_, char material_)");
 	number_of_paintings = number_of_paintings_;
 }
 Album::Album(const Album& a)

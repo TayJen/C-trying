@@ -21,18 +21,9 @@
     <ClCompile Include="Points_and_Section.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="LR_5.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Piece_of_Paper.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Points_and_Section.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Piece_of_Paper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
